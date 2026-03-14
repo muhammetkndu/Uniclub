@@ -1,0 +1,127 @@
+@import "tailwindcss";
+
+.hide-scrollbar::-webkit-scrollbar { display: none; }
+.hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+
+/* ── CSS Design Tokens ─────────────────────────────────────────────── */
+:root {
+  /* Dark mode (default) */
+  --bg:           #08080F;
+  --surface:      #0F0F18;
+  --surface2:     #1A1A28;
+  --surface-deep: #06060C;
+  --bc:           rgba(255,255,255,0.07);
+  --bc2:          rgba(255,255,255,0.12);
+  --nav-bg:       rgba(8,8,15,0.85);
+  --input-bg:     rgba(255,255,255,0.04);
+  --input-bc:     rgba(255,255,255,0.09);
+  --text2:        rgba(255,255,255,0.40);
+  --text3:        rgba(255,255,255,0.28);
+  --text4:        rgba(255,255,255,0.18);
+  --text5:        rgba(255,255,255,0.08);
+}
+
+/* ── Light Mode ──────────────────────────────────────────────────────
+   Premium violet-tinted white — clean, airy, cohesive with violet accent
+──────────────────────────────────────────────────────────────────────── */
+:root[data-theme="light"] {
+  --bg:           #F8F7FF;
+  --surface:      #FFFFFF;
+  --surface2:     #F0EEFF;
+  --surface-deep: #EBE9FA;
+  --bc:           rgba(109,89,232,0.13);   /* violet-tinted border */
+  --bc2:          rgba(109,89,232,0.22);
+  --nav-bg:       rgba(248,247,255,0.92);
+  --input-bg:     rgba(109,89,232,0.05);
+  --input-bc:     rgba(109,89,232,0.14);
+  --text2:        rgba(18,10,60,0.58);
+  --text3:        rgba(18,10,60,0.40);
+  --text4:        rgba(18,10,60,0.25);
+  --text5:        rgba(18,10,60,0.09);
+}
+
+/* ── Tailwind text overrides for light mode ─────────────────────────- */
+:root[data-theme="light"] .text-slate-100 { color: #1a1729; }
+:root[data-theme="light"] .text-slate-200 { color: #2d2a44; }
+:root[data-theme="light"] .text-slate-300 { color: #46436a; }
+:root[data-theme="light"] .text-slate-400 { color: #6a649c; }
+:root[data-theme="light"] .text-slate-500 { color: #8a84b8; }
+:root[data-theme="light"] .text-slate-600 { color: #a09bc8; }
+
+/* Inside cards, also remap text-white (headings flip dark) */
+:root[data-theme="light"] .card-dark .text-white     { color: #1a1729; }
+:root[data-theme="light"] .card-dark .text-slate-100 { color: #1a1729; }
+:root[data-theme="light"] .card-dark .text-slate-500 { color: #7070a0; }
+
+/* card-dark light hover */
+:root[data-theme="light"] .card-dark {
+  box-shadow: 0 1px 4px rgba(109,89,232,0.07), 0 4px 16px rgba(109,89,232,0.05);
+}
+:root[data-theme="light"] .card-dark:hover {
+  box-shadow: 0 4px 20px rgba(109,89,232,0.18), 0 1px 4px rgba(109,89,232,0.10);
+  border-color: rgba(109,89,232,0.30);
+}
+
+@layer base {
+  html {
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    scroll-behavior: smooth;
+  }
+  body {
+    background-color: var(--bg);
+    transition: background-color 0.3s, color 0.3s;
+  }
+  :root[data-theme="dark"]  body { color: #EEEEFF; }
+  :root[data-theme="light"] body { color: #1a1729; }
+  /* Also default (before attribute is set by JS) stays dark */
+  body { color: #EEEEFF; }
+}
+
+@layer components {
+  .btn-primary {
+    @apply inline-flex items-center gap-2 rounded-xl bg-violet-600 px-5 py-2.5 text-sm font-semibold text-white shadow-lg transition-all hover:bg-violet-500 active:scale-95;
+    box-shadow: 0 0 20px rgba(124,92,252,0.35);
+  }
+  .btn-primary:hover { box-shadow: 0 0 28px rgba(124,92,252,0.5); }
+
+  .btn-ghost {
+    @apply inline-flex items-center gap-2 rounded-xl px-5 py-2.5 text-sm font-medium transition-all active:scale-95;
+    border: 1px solid var(--bc2);
+    background: var(--input-bg);
+    color: var(--text2);
+  }
+  .btn-ghost:hover {
+    background: var(--surface2);
+    filter: brightness(1.08);
+  }
+
+  .card-dark {
+    background: var(--surface);
+    border: 1px solid var(--bc);
+    @apply rounded-2xl transition-all duration-200;
+  }
+  .card-dark:hover {
+    border-color: rgba(109,89,232,0.28);
+    box-shadow: 0 4px 24px rgba(0,0,0,0.25), 0 0 0 1px rgba(109,89,232,0.12);
+  }
+
+  .input-pro {
+    @apply w-full rounded-xl px-3.5 py-2.5 text-sm outline-none transition;
+    background: var(--input-bg);
+    border: 1px solid var(--input-bc);
+    color: inherit;
+  }
+  .input-pro::placeholder { color: var(--text3); }
+  .input-pro:focus {
+    border-color: rgba(124,92,252,0.6);
+    box-shadow: 0 0 0 3px rgba(124,92,252,0.1);
+  }
+
+  .badge-pro {
+    @apply inline-flex items-center gap-1.5 rounded-full px-3 py-1 text-xs font-semibold;
+    background: rgba(124,92,252,0.12);
+    border: 1px solid rgba(124,92,252,0.25);
+    color: #a78bfa;
+  }
+}
