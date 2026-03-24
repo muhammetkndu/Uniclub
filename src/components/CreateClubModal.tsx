@@ -55,9 +55,9 @@ export const CreateClubModal = ({ isOpen, onClose }: CreateClubModalProps) => (
           <textarea rows={2} className="input-pro w-full resize-none" placeholder="Instagram, Twitter veya web sitesi" />
         </div>
         <div className="flex gap-3 pt-1">
-          <button type="button" onClick={onClose} className="flex-1 rounded-xl py-2.5 text-sm font-semibold transition-all"
+          <button aria-label='Kapat' type="button" onClick={onClose} className="flex-1 rounded-xl py-2.5 text-sm font-semibold transition-all"
             style={{ border: '1px solid var(--bc2)', color: 'var(--text2)' }}>İptal</button>
-          <button type="submit" className="flex-1 btn-primary py-2.5 text-sm justify-center">Kulüp Oluştur 🚀</button>
+          <button aria-label='Kulüp Oluştur' type="submit" className="flex-1 btn-primary py-2.5 text-sm justify-center">Kulüp Oluştur 🚀</button>
         </div>
       </form>
     </div>

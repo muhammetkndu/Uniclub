@@ -60,11 +60,11 @@ export const ClubsPage = ({ onCreateClubClick }: ClubsPageProps) => {
               </svg>
               <input type="text" value={localSearch} onChange={e => setLocalSearch(e.target.value)} placeholder="Kulüp ara..." className="input-pro w-full pl-9" />
             </div>
-            <button type="button" onClick={onCreateClubClick} className="btn-primary shrink-0 text-sm px-5">+ Kulüp Oluştur</button>
+            <button aria-label='Kulüp Oluştur' type="button" onClick={onCreateClubClick} className="btn-primary shrink-0 text-sm px-5">+ Kulüp Oluştur</button>
           </div>
           <div className="mt-5 flex flex-wrap justify-center gap-2">
             {CATEGORIES.map(cat => (
-              <button key={cat} type="button" onClick={() => setSelectedCategory(cat)}
+              <button aria-label='Kategoriler' key={cat} type="button" onClick={() => setSelectedCategory(cat)}
                 className={['rounded-full px-4 py-1.5 text-xs font-semibold transition-all', selectedCategory === cat ? `bg-gradient-to-r ${CAT_COLORS[cat]} text-white shadow-md` : 'text-slate-500 hover:text-slate-200'].join(' ')}
                 style={selectedCategory === cat ? undefined : { background: 'var(--input-bg)', border: '1px solid var(--bc)' }}>
                 {cat}
@@ -111,7 +111,7 @@ export const ClubsPage = ({ onCreateClubClick }: ClubsPageProps) => {
                       </div>
                       <span className="text-[10px]" style={{ color: 'var(--text3)' }}>{club.members} üye</span>
                     </div>
-                    <button type="button" onClick={() => toggleJoin(club.name)}
+                    <button aria-label='katıl' type="button" onClick={() => toggleJoin(club.name)}
                       className={['rounded-lg px-3.5 py-1.5 text-xs font-semibold transition-all', joinedClubs.includes(club.name) ? 'text-violet-400' : 'text-white'].join(' ')}
                       style={joinedClubs.includes(club.name)
                         ? { background: 'rgba(124,92,252,0.12)', border: '1px solid rgba(124,92,252,0.25)' }

@@ -67,7 +67,7 @@ export const CreatePostModal = ({ isOpen, onClose, onPost }: CreatePostModalProp
                 </button>
               </div>
             ) : (
-              <button type="button" onClick={() => fileRef.current?.click()} className="flex w-full flex-col items-center gap-2 rounded-xl py-8 transition-all hover:border-violet-500/50"
+              <button aria-label='Görsel Ekle' type="button" onClick={() => fileRef.current?.click()} className="flex w-full flex-col items-center gap-2 rounded-xl py-8 transition-all hover:border-violet-500/50"
                 style={{ border: '1.5px dashed var(--bc2)' }}>
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="h-7 w-7" style={{ color: 'var(--text4)' }}><path strokeLinecap="round" strokeLinejoin="round" d="m2.25 15.75 5.159-5.159a2.25 2.25 0 0 1 3.182 0l5.159 5.159m-1.5-1.5 1.409-1.409a2.25 2.25 0 0 1 3.182 0l2.909 2.909m-18 3.75h16.5a1.5 1.5 0 0 0 1.5-1.5V6a1.5 1.5 0 0 0-1.5-1.5H3.75A1.5 1.5 0 0 0 2.25 6v12a1.5 1.5 0 0 0 1.5 1.5Zm10.5-11.25h.008v.008h-.008V8.25Zm.375 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Z"/></svg>
                 <span className="text-xs font-semibold text-violet-500">Görsel ekle</span>
@@ -77,9 +77,9 @@ export const CreatePostModal = ({ isOpen, onClose, onPost }: CreatePostModalProp
             <input ref={fileRef} type="file" accept="image/*" onChange={handleFileChange} className="hidden" />
           </div>
           <div className="flex gap-3 pt-1">
-            <button type="button" onClick={() => { reset(); onClose() }} className="flex-1 rounded-xl py-2.5 text-sm font-semibold transition-all"
+            <button aria-label='İptal' type="button" onClick={() => { reset(); onClose() }} className="flex-1 rounded-xl py-2.5 text-sm font-semibold transition-all"
               style={{ border: '1px solid var(--bc2)', color: 'var(--text2)' }}>İptal</button>
-            <button type="submit" disabled={!title.trim()} className="flex-1 btn-primary py-2.5 text-sm justify-center disabled:opacity-40 disabled:cursor-not-allowed">Paylaş 🎉</button>
+            <button aria-label='Paylaş' type="submit" disabled={!title.trim()} className="flex-1 btn-primary py-2.5 text-sm justify-center disabled:opacity-40 disabled:cursor-not-allowed">Paylaş 🎉</button>
           </div>
         </form>
       </div>

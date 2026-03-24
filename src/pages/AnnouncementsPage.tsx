@@ -49,7 +49,7 @@ export const AnnouncementsPage = () => (
                     </div>
                   </div>
                   <p className="mt-2.5 text-xs leading-relaxed" style={{ color: 'var(--text2)' }}>{item.description}</p>
-                  <button type="button" className="mt-3 text-xs font-semibold text-violet-400 hover:text-violet-300 transition-colors">Devamını oku →</button>
+                  <button aria-label="devamını oku" type="button" className="mt-3 text-xs font-semibold text-violet-400 hover:text-violet-300 transition-colors">Devamını oku →</button>
                 </div>
               </div>
             ))}
@@ -76,7 +76,7 @@ export const AnnouncementsPage = () => (
             <h3 className="text-[10px] font-bold uppercase tracking-widest mb-3" style={{ color: 'var(--text3)' }}>Bildirim Al</h3>
             <p className="text-xs leading-relaxed mb-3" style={{ color: 'var(--text2)' }}>Yeni duyurulardan anında haberdar ol.</p>
             <input type="email" placeholder="E-posta adresin" className="input-pro mb-2" />
-            <button type="button" className="btn-primary w-full py-2 text-xs justify-center">Abone Ol</button>
+            <button aria-label="abone ol" type="button" className="btn-primary w-full py-2 text-xs justify-center">Abone Ol</button>
           </div>
           <div className="card-dark p-5">
             <h3 className="text-[10px] font-bold uppercase tracking-widest mb-3" style={{ color: 'var(--text3)' }}>Durum</h3>

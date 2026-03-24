@@ -36,7 +36,7 @@ export const Footer = () => (
       <div className="grid gap-10 py-14 lg:grid-cols-[1.5fr_1fr_1fr_1fr_1fr]">
         {/* Brand */}
         <div className="space-y-5">
-          <Link to="/" className="inline-flex items-center gap-2.5 group">
+          <Link rel="preconnect" to="/" className="inline-flex items-center gap-2.5 group">
             <div className="flex h-8 w-8 items-center justify-center rounded-xl text-sm font-black text-white"
               style={{ background: 'linear-gradient(135deg, #7C5CFC, #5B4ED9)', boxShadow: '0 0 16px rgba(124,92,252,0.4)' }}>U</div>
             <span className="text-sm font-bold group-hover:text-violet-400 transition-colors" style={{ color: 'var(--text2)', filter: 'brightness(1.5)' }}>UniClub</span>
@@ -62,7 +62,7 @@ export const Footer = () => (
             <ul className="space-y-2.5">
               {items.map(item => (
                 <li key={item.label}>
-                  <Link to={item.to} className="text-xs transition-colors hover:text-violet-400" style={{ color: 'var(--text3)' }}>{item.label}</Link>
+                  <Link rel="preconnect" to={item.to} className="text-xs transition-colors hover:text-violet-400" style={{ color: 'var(--text3)' }}>{item.label}</Link>
                 </li>
               ))}
             </ul>
@@ -75,7 +75,7 @@ export const Footer = () => (
           <p className="text-xs leading-relaxed" style={{ color: 'var(--text3)' }}>Yeni kulüpler ve etkinliklerden haberdar ol.</p>
           <form className="space-y-2" onSubmit={e => e.preventDefault()}>
             <input type="email" required placeholder="E-posta adresin" className="input-pro w-full text-xs py-2" />
-            <button type="submit" className="btn-primary w-full text-xs py-2 justify-center">Abone Ol</button>
+            <button aria-label='abone ol' type="submit" className="btn-primary w-full text-xs py-2 justify-center">Abone Ol</button>
           </form>
         </div>
       </div>

@@ -25,10 +25,10 @@ const TRENDING_CLUBS = [
 
 // Background images for hero slideshow
 const HERO_IMAGES = [
-  'https://images.pexels.com/photos/1205651/pexels-photo-1205651.jpeg?auto=compress&cs=tinysrgb&w=1400',
-  'https://images.pexels.com/photos/3184311/pexels-photo-3184311.jpeg?auto=compress&cs=tinysrgb&w=1400',
-  'https://images.pexels.com/photos/1181304/pexels-photo-1181304.jpeg?auto=compress&cs=tinysrgb&w=1400',
-  'https://images.pexels.com/photos/164745/pexels-photo-164745.jpeg?auto=compress&cs=tinysrgb&w=1400',
+  'https://images.pexels.com/photos/1205651/pexels-photo-1205651.jpeg?auto=compress&cs=tinysrgb&w=700',
+  'https://images.pexels.com/photos/3184311/pexels-photo-3184311.jpeg?auto=compress&cs=tinysrgb&w=700',
+  'https://images.pexels.com/photos/1181304/pexels-photo-1181304.jpeg?auto=compress&cs=tinysrgb&w=700',
+  'https://images.pexels.com/photos/164745/pexels-photo-164745.jpeg?auto=compress&cs=tinysrgb&w=700',
 ]
 
 // ── Hero ─────────────────────────────────────────────────────────────
@@ -49,7 +49,7 @@ function Hero({ onCreateClubClick }: { onCreateClubClick: () => void }) {
         <div key={img}
           className="absolute inset-0 z-0 transition-opacity duration-1000"
           style={{ opacity: i === bgIdx ? 1 : 0 }}>
-          <img src={img} alt="" className="h-full w-full object-cover" draggable={false} />
+          <img src={img} alt="" rel="preload" className="h-full w-full object-cover" draggable={false} loading="eager" fetchPriority="high" />
         </div>
       ))}
 
@@ -100,10 +100,12 @@ function Hero({ onCreateClubClick }: { onCreateClubClick: () => void }) {
 
         {/* CTAs */}
         <div className="mt-10 flex flex-wrap items-center justify-center gap-3">
-          <Link to="/clubs" className="btn-primary px-7 py-3 text-sm">
+          <Link rel="preconnect" to="/clubs" className="btn-primary px-7 py-3 text-sm">
             Kulüpleri Keşfet →
           </Link>
-          <button type="button" onClick={onCreateClubClick}
+          <button
+          aria-label='Kulüp Oluştur'
+           type="button" onClick={onCreateClubClick}
             className="px-7 py-3 text-sm font-semibold text-white rounded-xl transition-all hover:bg-white/15"
             style={{ background: 'rgba(255,255,255,0.1)', border: '1px solid rgba(255,255,255,0.2)', backdropFilter: 'blur(8px)' }}>
             Kulüp Oluştur
@@ -176,7 +178,7 @@ function TrendingClubs() {
             <h2 className="text-lg font-bold text-slate-100">Öne Çıkan Kulüpler</h2>
             <p className="mt-0.5 text-xs" style={{ color: 'var(--text3)' }}>Bu hafta en aktif topluluklar</p>
           </div>
-          <Link to="/clubs" className="text-xs font-medium text-violet-400 hover:text-violet-300 transition-colors">Tümünü gör →</Link>
+          <Link rel="preconnect" to="/clubs" className="text-xs font-medium text-violet-400 hover:text-violet-300 transition-colors">Tümünü gör →</Link>
         </div>
         <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
           {TRENDING_CLUBS.map((club, i) => (

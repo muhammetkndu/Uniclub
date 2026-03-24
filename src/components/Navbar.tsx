@@ -47,7 +47,7 @@ export const Navbar = ({ onLoginClick, onSignupClick, onCreateClubClick }: Navba
         <div className="mx-auto flex max-w-7xl items-center gap-5 px-4 py-3.5 lg:px-8">
 
           {/* Logo */}
-          <Link to="/" className="flex shrink-0 items-center gap-2.5 group">
+          <Link rel="preconnect" to="/" className="flex shrink-0 items-center gap-2.5 group">
             <div className="flex h-8 w-8 items-center justify-center rounded-xl text-sm font-black text-white"
               style={{ background: 'linear-gradient(135deg, #7C5CFC, #5B4ED9)', boxShadow: '0 0 16px rgba(124,92,252,0.5)' }}>U</div>
             <span className="text-sm font-bold tracking-tight text-white group-hover:text-violet-400 transition-colors"
@@ -59,7 +59,7 @@ export const Navbar = ({ onLoginClick, onSignupClick, onCreateClubClick }: Navba
           {/* Desktop Nav */}
           <div className="hidden items-center gap-0.5 md:flex">
             {navLinks.map(({ to, label, end }) => (
-              <NavLink key={to} to={to} end={end}
+              <NavLink rel="preconnect" key={to} to={to} end={end}
                 className="px-3 py-1.5 text-sm font-medium rounded-lg transition-all duration-150"
                 style={({ isActive }) => ({
                   background: isActive ? 'rgba(124,92,252,0.12)' : undefined,
@@ -80,9 +80,9 @@ export const Navbar = ({ onLoginClick, onSignupClick, onCreateClubClick }: Navba
             <input ref={searchRef} type="search" value={search} onChange={e => setSearch(e.target.value)}
               placeholder="Kulüp veya etkinlik ara..."
               className="w-full bg-transparent py-2 pl-2.5 pr-3 text-sm outline-none"
-              style={{ color: isDark ? '#e0e0f0' : '#1a1a2e' }} />
+              style={{ color: isDark ? '#e0e0f0' : '#000000' }} />
             {search && (
-              <button type="submit" className="mr-2 rounded-lg px-2.5 py-1 text-xs font-semibold text-white transition-colors"
+              <button aria-label='Ara' type="submit" className="mr-2 rounded-lg px-2.5 py-1 text-xs font-semibold text-white transition-colors"
                 style={{ background: 'rgba(124,92,252,0.6)' }}>Ara</button>
             )}
           </form>
@@ -90,19 +90,20 @@ export const Navbar = ({ onLoginClick, onSignupClick, onCreateClubClick }: Navba
           {/* Actions */}
           <div className="hidden items-center gap-2 md:flex shrink-0">
             {/* Create Club */}
-            <button type="button" onClick={onCreateClubClick} className="btn-ghost text-xs px-3 py-2">
+            <button aria-label='Kulüp Oluştur' type="button" onClick={onCreateClubClick} className="btn-ghost text-xs px-3 py-2">
               + Kulüp Oluştur
             </button>
 
             {/* Dark/Light toggle */}
             <button
               type="button"
+              aria-label='Mod Değiş'
               onClick={toggle}
               title={isDark ? 'Aydınlık moda geç' : 'Karanlık moda geç'}
               className="flex items-center justify-center rounded-xl transition-all duration-200"
               style={{
                 width: 36, height: 36,
-                background: isDark ? 'rgba(255,255,255,0.06)' : 'rgba(0,0,0,0.06)',
+                background: isDark ? 'rgba(252, 232, 232, 0.06)' : 'rgba(0,0,0,0.06)',
                 border: `1px solid ${isDark ? 'rgba(255,255,255,0.1)' : 'rgba(0,0,0,0.1)'}`,
                 color: isDark ? '#f9d96b' : '#7C5CFC',
               }}>
@@ -110,18 +111,18 @@ export const Navbar = ({ onLoginClick, onSignupClick, onCreateClubClick }: Navba
             </button>
 
             {/* Auth */}
-            <button type="button" onClick={onLoginClick}
+            <button aria-label='Giriş Yap' type="button" onClick={onLoginClick}
               className="px-4 py-2 text-sm font-medium rounded-xl transition-all"
               style={{ border: '1px solid var(--bc2)', color: 'var(--text2)', background: 'var(--input-bg)' }}>
               Giriş Yap
             </button>
-            <button type="button" onClick={onSignupClick} className="btn-primary text-sm px-4 py-2">
+            <button aria-label='Kayıt Ol' type="button" onClick={onSignupClick} className="btn-primary text-sm px-4 py-2">
               Kayıt Ol
             </button>
           </div>
 
           {/* Mobile hamburger */}
-          <button type="button" onClick={() => setMenuOpen(o => !o)}
+          <button aria-label='menü' type="button" onClick={() => setMenuOpen(o => !o)}
             className="ml-auto flex items-center justify-center rounded-lg p-1.5 md:hidden transition-colors"
             style={{ border: '1px solid var(--bc2)', color: 'var(--text2)' }}>
             {menuOpen
@@ -136,7 +137,7 @@ export const Navbar = ({ onLoginClick, onSignupClick, onCreateClubClick }: Navba
           <div className="border-t md:hidden" style={{ background: 'var(--bg)', borderColor: 'var(--bc)' }}>
             <div className="flex flex-col gap-0.5 px-4 py-3">
               {navLinks.map(({ to, label, end }) => (
-                <NavLink key={to} to={to} end={end} onClick={() => setMenuOpen(false)}
+                <NavLink rel="preconnect" key={to} to={to} end={end} onClick={() => setMenuOpen(false)}
                   className="rounded-lg px-3 py-2 text-sm font-medium"
                   style={({ isActive }) => ({
                     background: isActive ? 'rgba(124,92,252,0.1)' : undefined,
@@ -146,12 +147,12 @@ export const Navbar = ({ onLoginClick, onSignupClick, onCreateClubClick }: Navba
                 </NavLink>
               ))}
               <div className="mt-2 flex items-center gap-2 border-t pt-3" style={{ borderColor: 'var(--bc)' }}>
-                <button type="button" onClick={toggle} className="flex items-center gap-2 rounded-xl px-3 py-2 text-xs font-semibold transition-all"
+                <button aria-label='Mod Değiştir' type="button" onClick={toggle} className="flex items-center gap-2 rounded-xl px-3 py-2 text-xs font-semibold transition-all"
                   style={{ border: '1px solid var(--bc2)', color: isDark ? '#f9d96b' : '#7C5CFC', background: 'var(--input-bg)' }}>
                   {isDark ? <><SunIcon /> Aydınlık</> : <><MoonIcon /> Karanlık</>}
                 </button>
-                <button type="button" onClick={() => { setMenuOpen(false); onLoginClick() }} className="flex-1 rounded-xl py-2 text-sm font-medium" style={{ border: '1px solid var(--bc2)', color: 'var(--text2)' }}>Giriş Yap</button>
-                <button type="button" onClick={() => { setMenuOpen(false); onSignupClick() }} className="flex-1 btn-primary text-sm py-2 justify-center">Kayıt Ol</button>
+                <button aria-label='Giriş Yap' type="button" onClick={() => { setMenuOpen(false); onLoginClick() }} className="flex-1 rounded-xl py-2 text-sm font-medium" style={{ border: '1px solid var(--bc2)', color: 'var(--text2)' }}>Giriş Yap</button>
+                <button aria-label='Kayıt Ol' type="button" onClick={() => { setMenuOpen(false); onSignupClick() }} className="flex-1 btn-primary text-sm py-2 justify-center">Kayıt Ol</button>
               </div>
             </div>
           </div>
