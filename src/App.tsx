@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom'
+import { HelmetProvider } from 'react-helmet-async' // 👈 EKLEDİK
 import { ThemeProvider } from './context/ThemeContext'
 import { Navbar } from './components/Navbar'
 import { HomePage } from './pages/HomePage'
@@ -11,6 +12,8 @@ import { CreateClubModal } from './components/CreateClubModal'
 import { CreateAnnouncementModal } from './components/CreateAnnouncementModal'
 import { CreatePostModal } from './components/CreatePostModal'
 import { Footer } from './components/Footer'
+import { BlogPage } from './pages/BlogPage'
+import { BlogDetailPage } from './pages/BlogDetailPage'
 
 type ModalType = 'login' | 'signup' | 'createClub' | 'createAnnouncement' | 'createPost' | null
 
@@ -29,6 +32,8 @@ const AppInner = () => {
           <Route path="/" element={<HomePage onCreateClubClick={() => setModal('createClub')} onCreatePostClick={() => setModal('createPost')} />} />
           <Route path="/clubs" element={<ClubsPage onCreateClubClick={() => setModal('createClub')} />} />
           <Route path="/announcements" element={<AnnouncementsPage />} />
+          <Route path="/blog" element={<BlogPage />} />
+          <Route path="/blog/:id" element={<BlogDetailPage />} />
           <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
       </main>
@@ -43,11 +48,13 @@ const AppInner = () => {
 }
 
 const App = () => (
-  <ThemeProvider>
-    <BrowserRouter>
-      <AppInner />
-    </BrowserRouter>
-  </ThemeProvider>
+  <HelmetProvider> {/* 👈 BURAYA EKLEDİK */}
+    <ThemeProvider>
+      <BrowserRouter>
+        <AppInner />
+      </BrowserRouter>
+    </ThemeProvider>
+  </HelmetProvider>
 )
 
 export default App

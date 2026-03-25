@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { FeedSection } from '../sections/FeedSection'
+import { Helmet } from 'react-helmet-async'
 
 type HomePageProps = {
   onCreateClubClick: () => void
@@ -42,6 +43,20 @@ function Hero({ onCreateClubClick }: { onCreateClubClick: () => void }) {
   }, [])
 
   return (
+
+      <>
+
+<Helmet>
+  <title>Üniversite Kulüpleri ve Kampüs Etkinlikleri | UniClub</title>
+  <meta
+    name="description"
+    content="Üniversite kulüplerini keşfet, kampüs etkinliklerine katıl ve öğrenci topluluklarıyla bağlantı kur. UniClub ile tüm etkinlikler tek platformda."
+  />
+  <meta 
+  name='keywords'
+  content='Üniversite Kulüpleri'
+  />
+</Helmet>
     <section className="relative flex min-h-[92vh] items-center justify-center overflow-hidden px-4">
 
       {/* ── Background images (auto-advancing) ── */}
@@ -141,6 +156,7 @@ function Hero({ onCreateClubClick }: { onCreateClubClick: () => void }) {
       <div className="pointer-events-none absolute bottom-0 left-0 right-0 z-30 h-32"
         style={{ background: 'linear-gradient(to bottom, transparent, var(--bg))' }} />
     </section>
+    </>
   )
 }
 

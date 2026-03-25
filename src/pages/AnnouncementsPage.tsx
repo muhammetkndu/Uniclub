@@ -1,3 +1,5 @@
+import { Helmet } from "react-helmet-async"
+
 const ANNOUNCEMENTS = [
   { id: 1, month: 'MAR', day: '14', title: 'Platform Bakım Penceresi', description: 'Bildirimler ve etkinlik sistemi yükseltmesi için Cuma 22:00–23:00 arası kısa bir kesinti yaşanacak.', tag: 'Bakım', tagGradient: 'from-amber-500 to-orange-500', icon: '🔧', timeAgo: '2 sa önce' },
   { id: 2, month: 'MAR', day: '18', title: 'Yeni Analitik Paneli Geliyor', description: 'Kulüp yöneticileri üye büyümesini, etkinlik katılım oranını ve post etkileşimini tek ekranda görebilecek.', tag: 'Yeni Özellik', tagGradient: 'from-violet-500 to-purple-600', icon: '📊', timeAgo: '1 gün önce' },
@@ -11,6 +13,17 @@ const CATEGORIES = [
 ]
 
 export const AnnouncementsPage = () => (
+
+    <>
+
+    <Helmet>
+  <title> Üniversite Kulübü</title>
+  <meta
+    name="description"
+    content= "kulübünü keşfet. Etkinlikler, üyeler ve detaylar UniClub'da."
+  />
+</Helmet>
+
   <div style={{ minHeight: '100vh', background: 'var(--bg)', transition: 'background 0.3s' }}>
     {/* Header */}
     <div className="border-b py-14" style={{ borderColor: 'var(--bc)', background: 'linear-gradient(to bottom, rgba(124,92,252,0.04), transparent)' }}>
@@ -97,4 +110,5 @@ export const AnnouncementsPage = () => (
       </div>
     </div>
   </div>
+  </>
 )

@@ -12,6 +12,7 @@ const navLinks = [
   { to: '/', label: 'Ana Sayfa', end: true },
   { to: '/clubs', label: 'Kulüpler' },
   { to: '/announcements', label: 'Duyurular' },
+  { to: '/blog', label: 'blog yazıları' },
 ]
 
 const SunIcon = () => (

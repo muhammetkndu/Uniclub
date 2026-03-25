@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { Helmet } from 'react-helmet-async'
 import { useSearchParams } from 'react-router-dom'
 
 const CLUBS = [
@@ -39,6 +40,16 @@ export const ClubsPage = ({ onCreateClubClick }: ClubsPageProps) => {
     setJoinedClubs(prev => prev.includes(name) ? prev.filter(c => c !== name) : [...prev, name])
 
   return (
+    <>
+    <Helmet>
+  <title>Üniversite Kulüpleri Listesi | UniClub</title>
+  <meta
+    name="description"
+    content="Üniversite kulüplerini keşfedin. Teknoloji, sanat, girişimcilik ve daha birçok öğrenci topluluğunu UniClub üzerinden inceleyin."
+  />
+</Helmet>
+
+
     <div style={{ background: 'var(--bg)', minHeight: '100vh', transition: 'background 0.3s' }}>
       {/* Page header */}
       <div className="relative overflow-hidden pt-16 pb-12"
@@ -130,5 +141,6 @@ export const ClubsPage = ({ onCreateClubClick }: ClubsPageProps) => {
         )}
       </div>
     </div>
+    </>
   )
 }
