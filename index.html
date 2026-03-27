@@ -1,23 +1,107 @@
 <!doctype html>
-<html lang="en">
+<html lang="tr">
   <head>
     <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-E3GQ757E2M"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-E3GQ757E2M"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-E3GQ757E2M');
+    </script>
 
-  gtag('config', 'G-E3GQ757E2M');
-</script>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>uniclub</title>
+
+    <!-- Primary SEO -->
+    <title>UniClub — Üniversite Kulüpleri ve Kampüs Etkinlikleri</title>
+    <meta name="description" content="Üniversite kulüplerini keşfet, kampüs etkinliklerine katıl ve öğrenci topluluklarıyla bağlantı kur. UniClub ile tüm kampüs aktiviteleri tek platformda." />
+    <meta name="keywords" content="üniversite kulüpleri, kampüs etkinlikleri, öğrenci toplulukları, kulüp yönetimi, öğrenci etkinlikleri, uniclub, türkiye üniversite kulüpleri" />
+    <meta name="author" content="UniClub" />
+    <meta name="robots" content="index, follow" />
     <meta name="google-site-verification" content="NdtO2AGSpq1T0F4n8err11O7N4dzIOgmoW9hrTedfC0" />
+
+    <!-- Theme -->
+    <meta name="theme-color" content="#7C5CFC" />
+    <!-- FOUC Prevention: tema localStorage'dan okunur, React mount'tan ÖNCE uygulanır -->
+    <script>
+      (function () {
+        try {
+          var t = localStorage.getItem('uc-theme');
+          document.documentElement.setAttribute('data-theme', t === 'light' ? 'light' : 'dark');
+        } catch (e) {
+          document.documentElement.setAttribute('data-theme', 'dark');
+        }
+      })();
+    </script>
+
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="tr_TR" />
+    <meta property="og:site_name" content="UniClub" />
+    <meta property="og:title" content="UniClub — Üniversite Kulüpleri ve Kampüs Etkinlikleri" />
+    <meta property="og:description" content="Üniversite kulüplerini keşfet, kampüs etkinliklerine katıl ve öğrenci topluluklarıyla bağlantı kur. 120+ kulüp, tek platform." />
+    <meta property="og:image" content="https://images.pexels.com/photos/1205651/pexels-photo-1205651.jpeg?auto=compress&cs=tinysrgb&w=1200" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="UniClub — Üniversite kampüs hayatı" />
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="UniClub — Üniversite Kulüpleri ve Kampüs Etkinlikleri" />
+    <meta name="twitter:description" content="Üniversite kulüplerini keşfet, kampüs etkinliklerine katıl. 120+ kulüp, tek platform." />
+    <meta name="twitter:image" content="https://images.pexels.com/photos/1205651/pexels-photo-1205651.jpeg?auto=compress&cs=tinysrgb&w=1200" />
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+
+    <!-- Preconnect: external resources -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="preconnect" href="https://images.pexels.com" />
+    <link rel="preconnect" href="https://www.googletagmanager.com" />
+
+    <!-- Google Fonts: Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+
+    <!-- Preload: ilk hero görseli (LCP optimizasyonu) -->
+    <link rel="preload" as="image" href="https://images.pexels.com/photos/1205651/pexels-photo-1205651.jpeg?auto=compress&cs=tinysrgb&w=1200" fetchpriority="high" />
+
+    <!-- JSON-LD Schema: WebSite -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "name": "UniClub",
+      "description": "Üniversite kulüplerini ve öğrencileri bir araya getiren Türkiye'nin kampüs platformu.",
+      "url": "https://uniclub.app",
+      "potentialAction": {
+        "@type": "SearchAction",
+        "target": {
+          "@type": "EntryPoint",
+          "urlTemplate": "https://uniclub.app/clubs?q={search_term_string}"
+        },
+        "query-input": "required name=search_term_string"
+      }
+    }
+    </script>
+
+    <!-- JSON-LD Schema: Organization -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "name": "UniClub",
+      "description": "Türkiye'deki üniversite öğrencilerini kulüpler, etkinlikler ve duyurular aracılığıyla bir araya getiren platform.",
+      "url": "https://uniclub.app",
+      "logo": "https://uniclub.app/vite.svg",
+      "sameAs": []
+    }
+    </script>
   </head>
   <body>
     <div id="root"></div>
-    <script type="module" src="/src/main.tsx" defer></script>
+    <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>

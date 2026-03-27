@@ -3,44 +3,89 @@
 .hide-scrollbar::-webkit-scrollbar { display: none; }
 .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
 
-/* ── CSS Design Tokens ─────────────────────────────────────────────── */
+/* ═══════════════════════════════════════════════════════════════════
+   CSS DESIGN TOKEN SİSTEMİ — tek kaynak doğruluğu
+   Tüm bileşenler bu token'ları kullanır, inline rgba/hex kullanmaz.
+═══════════════════════════════════════════════════════════════════ */
 :root {
-  /* Dark mode (default) */
-  --bg:           #08080F;
-  --surface:      #0F0F18;
-  --surface2:     #1A1A28;
-  --surface-deep: #06060C;
-  --bc:           rgba(255,255,255,0.07);
-  --bc2:          rgba(255,255,255,0.12);
-  --nav-bg:       rgba(8,8,15,0.85);
-  --input-bg:     rgba(255,255,255,0.04);
-  --input-bc:     rgba(255,255,255,0.09);
-  --text2:        rgba(255,255,255,0.40);
-  --text3:        rgba(255,255,255,0.28);
-  --text4:        rgba(255,255,255,0.18);
-  --text5:        rgba(255,255,255,0.08);
+  /* ── Accent Palette ─────────────────────────────────────────── */
+  --accent:         #7C5CFC;   /* Primary violet — CTA, active states  */
+  --accent-dark:    #5B4ED9;   /* Darker variant — gradient end         */
+  --accent-light:   #9B7CFF;   /* Lighter — hover states               */
+  --accent-glow:    rgba(124,92,252,0.40);  /* Box shadow glow          */
+  --accent-muted:   rgba(124,92,252,0.12);  /* Subtle backgrounds       */
+  --accent-subtle:  rgba(124,92,252,0.06);  /* Very light tint (headers)*/
+  --accent-border:  rgba(124,92,252,0.25);  /* Accent borders           */
+  --accent-text:    #a78bfa;   /* Accent text on dark backgrounds       */
+
+  /* ── Semantic / Status Colors ───────────────────────────────── */
+  --success:        #34d399;   /* emerald-400 — online, success         */
+  --success-glow:   rgba(52,211,153,0.8);
+  --success-muted:  rgba(52,211,153,0.12);
+  --success-border: rgba(52,211,153,0.25);
+  --danger:         #f87171;   /* red-400 — errors, hot badge           */
+  --danger-muted:   rgba(239,68,68,0.10);
+  --danger-border:  rgba(239,68,68,0.20);
+  --warning:        #f9d96b;   /* Theme toggle icon (light) color        */
+
+  /* ── Dark Mode Surfaces ──────────────────────────────────────── */
+  --bg:             #08080F;
+  --surface:        #0F0F18;
+  --surface2:       #1A1A28;
+  --surface-deep:   #06060C;
+
+  /* ── Dark Mode Borders ──────────────────────────────────────── */
+  --bc:             rgba(255,255,255,0.07);
+  --bc2:            rgba(255,255,255,0.12);
+
+  /* ── Dark Mode Inputs ───────────────────────────────────────── */
+  --nav-bg:         rgba(8,8,15,0.85);
+  --input-bg:       rgba(255,255,255,0.04);
+  --input-bc:       rgba(255,255,255,0.09);
+  --input-hover:    rgba(255,255,255,0.08);
+
+  /* ── Dark Mode Text (WCAG AA: 0.55+ for secondary) ─────────── */
+  --text1:          #EEEEFF;   /* Primary text                         */
+  --text2:          rgba(255,255,255,0.55);  /* Secondary text         */
+  --text3:          rgba(255,255,255,0.38);  /* Tertiary / labels      */
+  --text4:          rgba(255,255,255,0.22);  /* Placeholder / meta     */
+  --text5:          rgba(255,255,255,0.08);  /* Subtle dividers        */
+
+  /* ── Overlay / Scrim ────────────────────────────────────────── */
+  --scrim:          rgba(4,4,12,0.72);       /* Hero overlay           */
+  --scrim-card:     rgba(0,0,0,0.50);        /* Card scrim             */
+
+  /* ── Gradients (reusable) ───────────────────────────────────── */
+  --gradient-accent:       linear-gradient(135deg, var(--accent), var(--accent-dark));
+  --gradient-page-top:     linear-gradient(to bottom, var(--accent-subtle), transparent);
+  --gradient-divider:      linear-gradient(to right, transparent, rgba(124,92,252,0.6), transparent);
+  --gradient-card-img:     linear-gradient(to top, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.3) 50%, transparent 100%);
 }
 
-/* ── Light Mode ──────────────────────────────────────────────────────
-   Premium violet-tinted white — clean, airy, cohesive with violet accent
-──────────────────────────────────────────────────────────────────────── */
+/* ═══════════════════════════════════════════════════════════════════
+   LIGHT MODE — Premium violet-tinted white
+═══════════════════════════════════════════════════════════════════ */
 :root[data-theme="light"] {
-  --bg:           #F8F7FF;
-  --surface:      #FFFFFF;
-  --surface2:     #F0EEFF;
-  --surface-deep: #EBE9FA;
-  --bc:           rgba(109,89,232,0.13);   /* violet-tinted border */
-  --bc2:          rgba(109,89,232,0.22);
-  --nav-bg:       rgba(248,247,255,0.92);
-  --input-bg:     rgba(109,89,232,0.05);
-  --input-bc:     rgba(109,89,232,0.14);
-  --text2:        rgba(18,10,60,0.58);
-  --text3:        rgba(18,10,60,0.40);
-  --text4:        rgba(18,10,60,0.25);
-  --text5:        rgba(18,10,60,0.09);
+  --bg:             #F8F7FF;
+  --surface:        #FFFFFF;
+  --surface2:       #F0EEFF;
+  --surface-deep:   #EBE9FA;
+  --bc:             rgba(109,89,232,0.13);
+  --bc2:            rgba(109,89,232,0.22);
+  --nav-bg:         rgba(248,247,255,0.92);
+  --input-bg:       rgba(109,89,232,0.05);
+  --input-bc:       rgba(109,89,232,0.14);
+  --input-hover:    rgba(109,89,232,0.09);
+  --text1:          #1a1729;
+  --text2:          rgba(18,10,60,0.68);
+  --text3:          rgba(18,10,60,0.48);
+  --text4:          rgba(18,10,60,0.30);
+  --text5:          rgba(18,10,60,0.09);
+  --scrim:          rgba(4,4,12,0.65);
+  --scrim-card:     rgba(0,0,0,0.45);
 }
 
-/* ── Tailwind text overrides for light mode ─────────────────────────- */
+/* ── Light mode: text-slate overrides (Tailwind → token) ─────── */
 :root[data-theme="light"] .text-slate-100 { color: #1a1729; }
 :root[data-theme="light"] .text-slate-200 { color: #2d2a44; }
 :root[data-theme="light"] .text-slate-300 { color: #46436a; }
@@ -48,20 +93,21 @@
 :root[data-theme="light"] .text-slate-500 { color: #8a84b8; }
 :root[data-theme="light"] .text-slate-600 { color: #a09bc8; }
 
-/* Inside cards, also remap text-white (headings flip dark) */
+/* ── Light mode: card-dark text inversion ────────────────────── */
 :root[data-theme="light"] .card-dark .text-white     { color: #1a1729; }
 :root[data-theme="light"] .card-dark .text-slate-100 { color: #1a1729; }
 :root[data-theme="light"] .card-dark .text-slate-500 { color: #7070a0; }
-
-/* card-dark light hover */
 :root[data-theme="light"] .card-dark {
-  box-shadow: 0 1px 4px rgba(109,89,232,0.07), 0 4px 16px rgba(109,89,232,0.05);
+  box-shadow: 0 1px 4px var(--accent-muted), 0 4px 16px rgba(109,89,232,0.05);
 }
 :root[data-theme="light"] .card-dark:hover {
   box-shadow: 0 4px 20px rgba(109,89,232,0.18), 0 1px 4px rgba(109,89,232,0.10);
-  border-color: rgba(109,89,232,0.30);
+  border-color: var(--accent-border);
 }
 
+/* ═══════════════════════════════════════════════════════════════════
+   BASE STYLES
+═══════════════════════════════════════════════════════════════════ */
 @layer base {
   html {
     font-family: 'Inter', system-ui, -apple-system, sans-serif;
@@ -70,20 +116,28 @@
   }
   body {
     background-color: var(--bg);
+    color: var(--text1);
     transition: background-color 0.3s, color 0.3s;
   }
-  :root[data-theme="dark"]  body { color: #EEEEFF; }
-  :root[data-theme="light"] body { color: #1a1729; }
-  /* Also default (before attribute is set by JS) stays dark */
-  body { color: #EEEEFF; }
 }
 
+/* ═══════════════════════════════════════════════════════════════════
+   COMPONENT CLASSES
+═══════════════════════════════════════════════════════════════════ */
 @layer components {
+
+  /* ── Buttons ─────────────────────────────────────────────────── */
   .btn-primary {
-    @apply inline-flex items-center gap-2 rounded-xl bg-violet-600 px-5 py-2.5 text-sm font-semibold text-white shadow-lg transition-all hover:bg-violet-500 active:scale-95;
-    box-shadow: 0 0 20px rgba(124,92,252,0.35);
+    @apply inline-flex items-center gap-2 rounded-xl px-5 py-2.5 text-sm font-semibold text-white transition-all active:scale-95;
+    background: var(--gradient-accent);
+    box-shadow: 0 0 20px var(--accent-glow);
   }
-  .btn-primary:hover { box-shadow: 0 0 28px rgba(124,92,252,0.5); }
+  .btn-primary:hover {
+    box-shadow: 0 0 30px var(--accent-glow), 0 0 0 1px var(--accent-border);
+    filter: brightness(1.1);
+  }
+  .btn-primary:active  { box-shadow: 0 0 12px var(--accent-glow); }
+  .btn-primary:disabled { opacity: 0.4; cursor: not-allowed; filter: none; box-shadow: none; }
 
   .btn-ghost {
     @apply inline-flex items-center gap-2 rounded-xl px-5 py-2.5 text-sm font-medium transition-all active:scale-95;
@@ -91,21 +145,27 @@
     background: var(--input-bg);
     color: var(--text2);
   }
-  .btn-ghost:hover {
-    background: var(--surface2);
-    filter: brightness(1.08);
-  }
+  .btn-ghost:hover { background: var(--surface2); filter: brightness(1.08); }
 
+  .btn-cancel {
+    @apply inline-flex items-center justify-center rounded-xl py-2.5 text-sm font-semibold transition-all active:scale-95;
+    border: 1px solid var(--bc2);
+    color: var(--text2);
+  }
+  .btn-cancel:hover { background: var(--surface2); }
+
+  /* ── Cards ───────────────────────────────────────────────────── */
   .card-dark {
     background: var(--surface);
     border: 1px solid var(--bc);
     @apply rounded-2xl transition-all duration-200;
   }
   .card-dark:hover {
-    border-color: rgba(109,89,232,0.28);
-    box-shadow: 0 4px 24px rgba(0,0,0,0.25), 0 0 0 1px rgba(109,89,232,0.12);
+    border-color: var(--accent-border);
+    box-shadow: 0 4px 24px rgba(0,0,0,0.25), 0 0 0 1px var(--accent-muted);
   }
 
+  /* ── Inputs ──────────────────────────────────────────────────── */
   .input-pro {
     @apply w-full rounded-xl px-3.5 py-2.5 text-sm outline-none transition;
     background: var(--input-bg);
@@ -113,15 +173,58 @@
     color: inherit;
   }
   .input-pro::placeholder { color: var(--text3); }
+  .input-pro:hover         { background: var(--input-hover); }
   .input-pro:focus {
     border-color: rgba(124,92,252,0.6);
-    box-shadow: 0 0 0 3px rgba(124,92,252,0.1);
+    box-shadow: 0 0 0 3px var(--accent-muted);
   }
 
-  .badge-pro {
-    @apply inline-flex items-center gap-1.5 rounded-full px-3 py-1 text-xs font-semibold;
-    background: rgba(124,92,252,0.12);
-    border: 1px solid rgba(124,92,252,0.25);
-    color: #a78bfa;
+  /* ── Badges ──────────────────────────────────────────────────── */
+  .badge-accent, .badge-pro {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.375rem;        /* gap-1.5 */
+    border-radius: 9999px;
+    padding: 0.25rem 0.75rem;  /* py-1 px-3 */
+    font-size: 0.75rem;
+    font-weight: 600;
+    background: var(--accent-muted);
+    border: 1px solid var(--accent-border);
+    color: var(--accent-text);
+  }
+
+  /* ── Nav Active Link ─────────────────────────────────────────── */
+  .nav-link-active {
+    background: var(--accent-muted);
+    border: 1px solid var(--accent-border);
+    color: var(--accent-text);
+  }
+
+  /* ── Page Section Header (gradient top) ─────────────────────── */
+  .section-header {
+    border-bottom: 1px solid var(--bc);
+    background: var(--gradient-page-top);
+  }
+
+  /* ── Status Dot: online/active ───────────────────────────────── */
+  .status-dot-online {
+    @apply h-1.5 w-1.5 rounded-full;
+    background: var(--success);
+    box-shadow: 0 0 6px var(--success-glow);
+  }
+
+  /* ── Hot Badge (fire emoji labels) ──────────────────────────── */
+  .badge-hot {
+    @apply shrink-0 rounded-full px-1.5 py-0.5 text-[9px] font-bold;
+    color: var(--danger);
+    background: var(--danger-muted);
+    border: 1px solid var(--danger-border);
+  }
+
+  /* ── Accent Empty State Box ──────────────────────────────────── */
+  .empty-state-icon {
+    @apply flex h-14 w-14 items-center justify-center rounded-2xl text-2xl;
+    background: var(--accent-muted);
+    border: 1px solid var(--accent-border);
   }
 }

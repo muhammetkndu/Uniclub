@@ -26,10 +26,10 @@ const TRENDING_CLUBS = [
 
 // Background images for hero slideshow
 const HERO_IMAGES = [
-  'https://images.pexels.com/photos/1205651/pexels-photo-1205651.jpeg?auto=compress&cs=tinysrgb&w=700',
-  'https://images.pexels.com/photos/3184311/pexels-photo-3184311.jpeg?auto=compress&cs=tinysrgb&w=700',
-  'https://images.pexels.com/photos/1181304/pexels-photo-1181304.jpeg?auto=compress&cs=tinysrgb&w=700',
-  'https://images.pexels.com/photos/164745/pexels-photo-164745.jpeg?auto=compress&cs=tinysrgb&w=700',
+  'https://images.pexels.com/photos/1205651/pexels-photo-1205651.jpeg?auto=compress&cs=tinysrgb&w=1920', // LCP — yüksek çözünürlük
+  'https://images.pexels.com/photos/3184311/pexels-photo-3184311.jpeg?auto=compress&cs=tinysrgb&w=900',
+  'https://images.pexels.com/photos/1181304/pexels-photo-1181304.jpeg?auto=compress&cs=tinysrgb&w=900',
+  'https://images.pexels.com/photos/164745/pexels-photo-164745.jpeg?auto=compress&cs=tinysrgb&w=900',
 ]
 
 // ── Hero ─────────────────────────────────────────────────────────────
@@ -48,14 +48,25 @@ function Hero({ onCreateClubClick }: { onCreateClubClick: () => void }) {
 
 <Helmet>
   <title>Üniversite Kulüpleri ve Kampüs Etkinlikleri | UniClub</title>
-  <meta
-    name="description"
-    content="Üniversite kulüplerini keşfet, kampüs etkinliklerine katıl ve öğrenci topluluklarıyla bağlantı kur. UniClub ile tüm etkinlikler tek platformda."
-  />
-  <meta 
-  name='keywords'
-  content='Üniversite Kulüpleri'
-  />
+  <meta name="description" content="Üniversite kulüplerini keşfet, kampüs etkinliklerine katıl ve öğrenci topluluklarıyla bağlantı kur. UniClub ile tüm etkinlikler tek platformda." />
+  <meta name="keywords" content="üniversite kulüpleri, kampüs etkinlikleri, öğrenci toplulukları, kulüp oluştur, öğrenci etkinlikleri, uniclub, türkiye üniversite, react atölyesi, esports, girişimcilik kulübü" />
+  <link rel="canonical" href="https://uniclub.app/" />
+  {/* Open Graph */}
+  <meta property="og:type" content="website" />
+  <meta property="og:locale" content="tr_TR" />
+  <meta property="og:site_name" content="UniClub" />
+  <meta property="og:url" content="https://uniclub.app/" />
+  <meta property="og:title" content="Üniversite Kulüpleri ve Kampüs Etkinlikleri | UniClub" />
+  <meta property="og:description" content="Üniversite kulüplerini keşfet, kampüs etkinliklerine katıl. 120+ kulüp, tek platform." />
+  <meta property="og:image" content="https://images.pexels.com/photos/1205651/pexels-photo-1205651.jpeg?auto=compress&cs=tinysrgb&w=1200" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:alt" content="UniClub — Üniversite kampüs hayatı" />
+  {/* Twitter Card */}
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="UniClub — Üniversite Kulüpleri ve Kampüs Etkinlikleri" />
+  <meta name="twitter:description" content="120+ üniversite kulübünü keşfet, kampüs etkinliklerine katıl." />
+  <meta name="twitter:image" content="https://images.pexels.com/photos/1205651/pexels-photo-1205651.jpeg?auto=compress&cs=tinysrgb&w=1200" />
 </Helmet>
     <section className="relative flex min-h-[92vh] items-center justify-center overflow-hidden px-4">
 
@@ -64,17 +75,27 @@ function Hero({ onCreateClubClick }: { onCreateClubClick: () => void }) {
         <div key={img}
           className="absolute inset-0 z-0 transition-opacity duration-1000"
           style={{ opacity: i === bgIdx ? 1 : 0 }}>
-          <img src={img} alt="" rel="preload" className="h-full w-full object-cover" draggable={false} loading="eager" fetchPriority="high" />
+          <img
+            src={img}
+            alt=""
+            className="h-full w-full object-cover transition-transform duration-700"
+            draggable={false}
+            width="1920"
+            height="1080"
+            loading={i === 0 ? 'eager' : 'lazy'}
+            fetchPriority={i === 0 ? 'high' : 'low'}
+            decoding={i === 0 ? 'sync' : 'async'}
+          />
         </div>
       ))}
 
       {/* Consistent dark overlay → text always readable */}
-      <div className="absolute inset-0 z-10" style={{ background: 'rgba(4,4,12,0.72)' }} />
+      <div className="absolute inset-0 z-10" style={{ background: 'var(--scrim)' }} />
 
       {/* ── Tinted gradient orbs (on top of overlay for depth) ── */}
       <div className="pointer-events-none absolute inset-0 z-20">
         <div className="absolute left-[-10%] top-[-5%] h-[600px] w-[600px] rounded-full opacity-30"
-          style={{ background: 'radial-gradient(circle, rgba(124,92,252,0.4) 0%, transparent 70%)' }} />
+          style={{ background: 'radial-gradient(circle, var(--accent-glow) 0%, transparent 70%)' }} />
         <div className="absolute right-[-10%] bottom-[-10%] h-[500px] w-[500px] rounded-full opacity-20"
           style={{ background: 'radial-gradient(circle, rgba(99,102,241,0.5) 0%, transparent 70%)' }} />
         <div className="absolute left-[40%] top-[60%] h-[300px] w-[300px] rounded-full opacity-15"
@@ -89,8 +110,8 @@ function Hero({ onCreateClubClick }: { onCreateClubClick: () => void }) {
       <div className="relative z-30 mx-auto max-w-5xl text-center">
         {/* Badge */}
         <div className="mb-8 flex items-center justify-center">
-          <span className="badge-pro">
-            <span className="h-1.5 w-1.5 rounded-full bg-violet-400 animate-pulse" />
+          <span className="badge-accent">
+            <span className="status-dot-online animate-pulse" />
             Türkiye'nin Kampüs Platformu
           </span>
         </div>
@@ -99,7 +120,7 @@ function Hero({ onCreateClubClick }: { onCreateClubClick: () => void }) {
         <h1 className="text-5xl font-black leading-[1.05] tracking-tight text-white md:text-6xl lg:text-7xl">
           Kampüste{' '}
           <span style={{
-            background: 'linear-gradient(135deg, #a78bfa 0%, #818cf8 50%, #60a5fa 100%)',
+            background: 'linear-gradient(135deg, var(--accent-text) 0%, #818cf8 50%, #60a5fa 100%)',
             WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text',
           }}>topluluğunu</span>{' '}
           bul,{' '}
@@ -115,7 +136,7 @@ function Hero({ onCreateClubClick }: { onCreateClubClick: () => void }) {
 
         {/* CTAs */}
         <div className="mt-10 flex flex-wrap items-center justify-center gap-3">
-          <Link rel="preconnect" to="/clubs" className="btn-primary px-7 py-3 text-sm">
+          <Link to="/clubs" className="btn-primary px-7 py-3 text-sm">
             Kulüpleri Keşfet →
           </Link>
           <button
@@ -135,8 +156,8 @@ function Hero({ onCreateClubClick }: { onCreateClubClick: () => void }) {
         {/* Floating event chips */}
         <div className="mt-16 hidden md:flex items-center justify-center gap-3">
           {['🎓 React Atölyesi · 2h', '🎮 Valorant Ligi · Yarın', '🎵 Açık Mikrofon · 18:00'].map((text, i) => (
-            <div key={i} className="flex items-center gap-2 rounded-full px-4 py-2 text-xs text-slate-400 select-none"
-              style={{ background: 'rgba(255,255,255,0.06)', border: '1px solid rgba(255,255,255,0.1)', backdropFilter: 'blur(8px)' }}>
+            <div key={i} className="flex items-center gap-2 rounded-full px-4 py-2 text-xs select-none"
+              style={{ background: 'var(--input-bg)', border: '1px solid var(--bc2)', backdropFilter: 'blur(8px)', color: 'var(--text3)' }}>
               {text}
             </div>
           ))}
@@ -169,11 +190,11 @@ function StatsBar() {
           {STATS.map(s => (
             <div key={s.label} className="flex items-center gap-3">
               <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl text-lg"
-                style={{ background: 'rgba(124,92,252,0.1)', border: '1px solid rgba(124,92,252,0.15)' }}>
+                style={{ background: 'var(--accent-muted)', border: '1px solid var(--accent-border)' }}>
                 {s.icon}
               </div>
               <div>
-                <p className="text-base font-extrabold" style={{ color: '#a78bfa' }}>{s.value}</p>
+                <p className="text-base font-extrabold" style={{ color: 'var(--accent-text)' }}>{s.value}</p>
                 <p className="text-xs" style={{ color: 'var(--text3)' }}>{s.label}</p>
               </div>
             </div>
@@ -194,7 +215,7 @@ function TrendingClubs() {
             <h2 className="text-lg font-bold text-slate-100">Öne Çıkan Kulüpler</h2>
             <p className="mt-0.5 text-xs" style={{ color: 'var(--text3)' }}>Bu hafta en aktif topluluklar</p>
           </div>
-          <Link rel="preconnect" to="/clubs" className="text-xs font-medium text-violet-400 hover:text-violet-300 transition-colors">Tümünü gör →</Link>
+          <Link to="/clubs" className="text-xs font-medium transition-colors hover:text-[var(--accent-light)]" style={{ color: 'var(--accent-text)' }}>Tümünü gör →</Link>
         </div>
         <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
           {TRENDING_CLUBS.map((club, i) => (
@@ -205,7 +226,7 @@ function TrendingClubs() {
               <div className="flex-1 min-w-0">
                 <div className="flex items-center gap-2">
                   <p className="text-sm font-semibold text-slate-100 truncate group-hover:text-white transition-colors">{club.name}</p>
-                  {club.hot && <span className="shrink-0 rounded-full px-1.5 py-0.5 text-[9px] font-bold text-rose-400" style={{ background: 'rgba(239,68,68,0.1)', border: '1px solid rgba(239,68,68,0.2)' }}>🔥</span>}
+                  {club.hot && <span className="badge-hot">🔥</span>}
                 </div>
                 <div className="mt-0.5 flex items-center gap-2">
                   <span className="text-[10px]" style={{ color: 'var(--text3)' }}>{club.category}</span>
@@ -213,7 +234,7 @@ function TrendingClubs() {
                   <span className="text-[10px]" style={{ color: 'var(--text3)' }}>{club.members} üye</span>
                 </div>
               </div>
-              <span className="shrink-0 text-[10px] font-bold group-hover:text-violet-400 transition-colors" style={{ color: 'var(--text4)' }}>#{i + 1}</span>
+              <span className="shrink-0 text-[10px] font-bold transition-colors group-hover:text-[var(--accent-text)]" style={{ color: 'var(--text4)' }}>#{i + 1}</span>
             </div>
           ))}
         </div>

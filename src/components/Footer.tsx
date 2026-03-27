@@ -30,16 +30,17 @@ export const Footer = () => (
   <footer className="relative overflow-hidden" style={{ background: 'var(--surface-deep)', borderTop: '1px solid var(--bc)', transition: 'background 0.3s' }}>
     {/* Glow top line */}
     <div className="pointer-events-none absolute top-0 left-1/2 -translate-x-1/2 h-px w-1/2"
-      style={{ background: 'linear-gradient(to right, transparent, rgba(124,92,252,0.6), transparent)' }} />
+      style={{ background: 'var(--gradient-divider)' }} />
 
     <div className="relative mx-auto max-w-7xl px-4 lg:px-8">
       <div className="grid gap-10 py-14 lg:grid-cols-[1.5fr_1fr_1fr_1fr_1fr]">
         {/* Brand */}
         <div className="space-y-5">
-          <Link rel="preconnect" to="/" className="inline-flex items-center gap-2.5 group">
+          <Link to="/" className="inline-flex items-center gap-2.5 group">
             <div className="flex h-8 w-8 items-center justify-center rounded-xl text-sm font-black text-white"
-              style={{ background: 'linear-gradient(135deg, #7C5CFC, #5B4ED9)', boxShadow: '0 0 16px rgba(124,92,252,0.4)' }}>U</div>
-            <span className="text-sm font-bold group-hover:text-violet-400 transition-colors" style={{ color: 'var(--text2)', filter: 'brightness(1.5)' }}>UniClub</span>
+              style={{ background: 'var(--gradient-accent)', boxShadow: '0 0 16px var(--accent-glow)' }}>U</div>
+            <span className="text-sm font-bold transition-colors group-hover:text-[var(--accent-text)]"
+              style={{ color: 'var(--text2)', filter: 'brightness(1.5)' }}>UniClub</span>
           </Link>
           <p className="max-w-xs text-xs leading-relaxed" style={{ color: 'var(--text3)' }}>
             Üniversite kulüplerini ve öğrencileri bir araya getiren platform.
@@ -47,7 +48,7 @@ export const Footer = () => (
           <div className="flex items-center gap-2">
             {SOCIAL.map(s => (
               <a key={s.label} href={s.href} aria-label={s.label}
-                className="flex h-8 w-8 items-center justify-center rounded-lg transition-all hover:text-violet-400"
+                className="flex h-8 w-8 items-center justify-center rounded-lg transition-all hover:text-[var(--accent-text)]"
                 style={{ background: 'var(--input-bg)', border: '1px solid var(--bc)', color: 'var(--text3)' }}>
                 {s.icon}
               </a>
@@ -58,11 +59,13 @@ export const Footer = () => (
         {/* Nav columns */}
         {Object.entries(LINKS).map(([heading, items]) => (
           <div key={heading} className="space-y-4">
-            <h3 className="text-[10px] font-bold uppercase tracking-widest" style={{ color: 'rgba(124,92,252,0.8)' }}>{heading}</h3>
+            <h3 className="text-[10px] font-bold uppercase tracking-widest"
+              style={{ color: 'var(--accent-text)' }}>{heading}</h3>
             <ul className="space-y-2.5">
               {items.map(item => (
                 <li key={item.label}>
-                  <Link rel="preconnect" to={item.to} className="text-xs transition-colors hover:text-violet-400" style={{ color: 'var(--text3)' }}>{item.label}</Link>
+                  <Link to={item.to} className="text-xs transition-colors hover:text-[var(--accent-text)]"
+                    style={{ color: 'var(--text3)' }}>{item.label}</Link>
                 </li>
               ))}
             </ul>
@@ -71,11 +74,12 @@ export const Footer = () => (
 
         {/* Newsletter */}
         <div className="space-y-4">
-          <h3 className="text-[10px] font-bold uppercase tracking-widest" style={{ color: 'rgba(124,92,252,0.8)' }}>Bülten</h3>
+          <h3 className="text-[10px] font-bold uppercase tracking-widest"
+            style={{ color: 'var(--accent-text)' }}>Bülten</h3>
           <p className="text-xs leading-relaxed" style={{ color: 'var(--text3)' }}>Yeni kulüpler ve etkinliklerden haberdar ol.</p>
           <form className="space-y-2" onSubmit={e => e.preventDefault()}>
             <input type="email" required placeholder="E-posta adresin" className="input-pro w-full text-xs py-2" />
-            <button aria-label='abone ol' type="submit" className="btn-primary w-full text-xs py-2 justify-center">Abone Ol</button>
+            <button aria-label="Abone Ol" type="submit" className="btn-primary w-full text-xs py-2 justify-center">Abone Ol</button>
           </form>
         </div>
       </div>
@@ -84,7 +88,7 @@ export const Footer = () => (
       <div className="flex flex-col items-center justify-between gap-3 border-t py-5 sm:flex-row" style={{ borderColor: 'var(--bc)' }}>
         <p className="text-[11px]" style={{ color: 'var(--text4)' }}>© {new Date().getFullYear()} UniClub. Tüm hakları saklıdır.</p>
         <div className="flex items-center gap-1.5">
-          <span className="h-1.5 w-1.5 rounded-full bg-emerald-400 animate-pulse" style={{ boxShadow: '0 0 6px rgba(52,211,153,0.8)' }} />
+          <span className="status-dot-online animate-pulse" />
           <span className="text-[11px]" style={{ color: 'var(--text4)' }}>Tüm sistemler çalışıyor</span>
         </div>
         <p className="text-[11px]" style={{ color: 'var(--text4)' }}>Türkiye'de ❤️ ile yapıldı</p>

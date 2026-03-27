@@ -42,21 +42,35 @@ export const ClubsPage = ({ onCreateClubClick }: ClubsPageProps) => {
   return (
     <>
     <Helmet>
-  <title>Üniversite Kulüpleri Listesi | UniClub</title>
-  <meta
-    name="description"
-    content="Üniversite kulüplerini keşfedin. Teknoloji, sanat, girişimcilik ve daha birçok öğrenci topluluğunu UniClub üzerinden inceleyin."
-  />
-</Helmet>
+      <title>Tüm Üniversite Kulüpleri | UniClub</title>
+      <meta name="description" content="Üniversite kulüplerini keşfedin. Teknoloji, sanat, girişimcilik ve daha birçok öğrenci topluluğunu UniClub üzerinden inceleyin ve katılın." />
+      <meta name="keywords" content="üniversite kulüpleri listesi, öğrenci toplulukları, teknoloji kulübü, esports topluğu, müzik kulübü, girişimcilik kulübü, uniclub kulüpler" />
+      <link rel="canonical" href="https://uniclub.app/clubs" />
+      <meta property="og:type" content="website" />
+      <meta property="og:locale" content="tr_TR" />
+      <meta property="og:site_name" content="UniClub" />
+      <meta property="og:url" content="https://uniclub.app/clubs" />
+      <meta property="og:title" content="Tüm Üniversite Kulüpleri | UniClub" />
+      <meta property="og:description" content="120+ üniversite kulübünü keşfedin. İlgi alanına göre filtrele, toplulukla buluş." />
+      <meta property="og:image" content="https://images.pexels.com/photos/1205651/pexels-photo-1205651.jpeg?auto=compress&cs=tinysrgb&w=1200" />
+      <meta property="og:image:width" content="1200" />
+      <meta property="og:image:height" content="630" />
+      <meta property="og:image:alt" content="UniClub Külüpler" />
+      {/* Twitter Card */}
+      <meta name="twitter:card" content="summary_large_image" />
+      <meta name="twitter:title" content="Tüm Üniversite Kulüpleri | UniClub" />
+      <meta name="twitter:description" content="120+ kulübü keşfedin. İlgi alanına göre filtrele." />
+      <meta name="twitter:image" content="https://images.pexels.com/photos/1205651/pexels-photo-1205651.jpeg?auto=compress&cs=tinysrgb&w=1200" />
+    </Helmet>
 
 
     <div style={{ background: 'var(--bg)', minHeight: '100vh', transition: 'background 0.3s' }}>
       {/* Page header */}
       <div className="relative overflow-hidden pt-16 pb-12"
-        style={{ background: 'linear-gradient(to bottom, rgba(124,92,252,0.06), transparent)' }}>
+        style={{ background: 'var(--gradient-page-top)' }}>
         <div className="pointer-events-none absolute inset-0">
           <div className="absolute left-[-5%] top-[-20%] h-80 w-80 rounded-full opacity-20"
-            style={{ background: 'radial-gradient(circle, rgba(124,92,252,0.5) 0%, transparent 70%)' }} />
+            style={{ background: 'radial-gradient(circle, var(--accent-glow) 0%, transparent 70%)' }} />
         </div>
         <div className="relative mx-auto max-w-7xl px-4 lg:px-8">
           <div className="mx-auto max-w-2xl text-center mb-10">
@@ -90,7 +104,7 @@ export const ClubsPage = ({ onCreateClubClick }: ClubsPageProps) => {
         {q && <p className="mb-4 text-sm" style={{ color: 'var(--text2)' }}>"<span className="text-violet-400 font-semibold">{q}</span>" — {filtered.length} sonuç</p>}
         {filtered.length === 0 ? (
           <div className="flex flex-col items-center py-20 text-center">
-            <div className="flex h-16 w-16 items-center justify-center rounded-2xl text-3xl" style={{ background: 'rgba(124,92,252,0.08)', border: '1px solid rgba(124,92,252,0.15)' }}>🔍</div>
+            <div className="empty-state-icon text-3xl">🔍</div>
             <p className="mt-4 text-sm font-semibold" style={{ color: 'var(--text2)' }}>Kulüp bulunamadı</p>
           </div>
         ) : (
@@ -104,7 +118,7 @@ export const ClubsPage = ({ onCreateClubClick }: ClubsPageProps) => {
                       {club.name.split(' ').slice(0, 2).map(w => w[0]).join('')}
                     </div>
                     <div className="flex items-center gap-2">
-                      {club.active && <span className="flex h-1.5 w-1.5 rounded-full bg-emerald-400" style={{ boxShadow: '0 0 6px rgba(52,211,153,0.8)' }} />}
+                      {club.active && <span className="status-dot-online" style={{ boxShadow: '0 0 6px var(--success-glow)' }} />}
                       <span className="text-[10px] font-semibold" style={{ color: 'var(--text3)' }}>{club.category}</span>
                     </div>
                   </div>
@@ -125,8 +139,8 @@ export const ClubsPage = ({ onCreateClubClick }: ClubsPageProps) => {
                     <button aria-label='katıl' type="button" onClick={() => toggleJoin(club.name)}
                       className={['rounded-lg px-3.5 py-1.5 text-xs font-semibold transition-all', joinedClubs.includes(club.name) ? 'text-violet-400' : 'text-white'].join(' ')}
                       style={joinedClubs.includes(club.name)
-                        ? { background: 'rgba(124,92,252,0.12)', border: '1px solid rgba(124,92,252,0.25)' }
-                        : { background: 'linear-gradient(135deg, #7C5CFC, #5B4ED9)' }
+                        ? { background: 'var(--accent-muted)', border: '1px solid var(--accent-border)' }
+                        : { background: 'var(--gradient-accent)' }
                       }>
                       {joinedClubs.includes(club.name)
                         ? <span className="flex items-center gap-1"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" className="h-3 w-3"><path fillRule="evenodd" d="M16.704 4.153a.75.75 0 0 1 .143 1.052l-8 10.5a.75.75 0 0 1-1.127.075l-4.5-4.5a.75.75 0 0 1 1.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 0 1 1.05-.143Z" clipRule="evenodd"/></svg> Katıldın</span>

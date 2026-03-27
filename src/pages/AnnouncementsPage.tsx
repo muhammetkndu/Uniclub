@@ -17,16 +17,30 @@ export const AnnouncementsPage = () => (
     <>
 
     <Helmet>
-  <title> Üniversite Kulübü</title>
-  <meta
-    name="description"
-    content= "kulübünü keşfet. Etkinlikler, üyeler ve detaylar UniClub'da."
-  />
-</Helmet>
+      <title>Platform Duyuruları | UniClub</title>
+      <meta name="description" content="UniClub ekibinden güncel platform haberleri, yeni özellikler, bakım bildirimleri ve önemli tarihler. Tüm duyurular tek sayfada." />
+      <meta name="keywords" content="uniclub duyurular, platform güncellemeleri, kampüs haberleri, üniversite kulübü duyuru" />
+      <link rel="canonical" href="https://uniclub.app/announcements" />
+      <meta property="og:type" content="website" />
+      <meta property="og:locale" content="tr_TR" />
+      <meta property="og:site_name" content="UniClub" />
+      <meta property="og:url" content="https://uniclub.app/announcements" />
+      <meta property="og:title" content="Platform Duyuruları | UniClub" />
+      <meta property="og:description" content="UniClub ekibinden güncel platform haberleri, yeni özellikler ve önemli tarihler." />
+      <meta property="og:image" content="https://images.pexels.com/photos/3184311/pexels-photo-3184311.jpeg?auto=compress&cs=tinysrgb&w=1200" />
+      <meta property="og:image:width" content="1200" />
+      <meta property="og:image:height" content="630" />
+      <meta property="og:image:alt" content="UniClub Platform Duyuruları" />
+      {/* Twitter Card */}
+      <meta name="twitter:card" content="summary_large_image" />
+      <meta name="twitter:title" content="Platform Duyuruları | UniClub" />
+      <meta name="twitter:description" content="UniClub ekibinden güncel haberler ve platform güncellemeleri." />
+      <meta name="twitter:image" content="https://images.pexels.com/photos/3184311/pexels-photo-3184311.jpeg?auto=compress&cs=tinysrgb&w=1200" />
+    </Helmet>
 
   <div style={{ minHeight: '100vh', background: 'var(--bg)', transition: 'background 0.3s' }}>
     {/* Header */}
-    <div className="border-b py-14" style={{ borderColor: 'var(--bc)', background: 'linear-gradient(to bottom, rgba(124,92,252,0.04), transparent)' }}>
+    <div className="border-b py-14" style={{ borderColor: 'var(--bc)', background: 'var(--gradient-page-top)' }}>
       <div className="mx-auto max-w-7xl px-4 lg:px-8 text-center">
         <span className="badge-pro mb-4 inline-flex">📣 {ANNOUNCEMENTS.length} duyuru</span>
         <h1 className="text-3xl font-black text-slate-100">Duyurular</h1>
@@ -39,7 +53,7 @@ export const AnnouncementsPage = () => (
         {/* Timeline */}
         <div className="relative">
           <div className="absolute left-[23px] top-0 bottom-0 w-px hidden sm:block"
-            style={{ background: 'linear-gradient(to bottom, rgba(124,92,252,0.5), rgba(124,92,252,0.05) 80%, transparent)' }} />
+            style={{ background: 'linear-gradient(to bottom, var(--accent-glow) 0%, var(--accent-subtle) 80%, transparent)' }} />
           <div className="space-y-2">
             {ANNOUNCEMENTS.map(item => (
               <div key={item.id} className="group flex gap-4 items-start sm:gap-6">
@@ -50,7 +64,7 @@ export const AnnouncementsPage = () => (
                   <div className="flex items-start justify-between gap-3 flex-wrap">
                     <div className="flex items-center gap-3">
                       <div className="sm:hidden flex h-8 w-8 shrink-0 items-center justify-center rounded-lg text-base"
-                        style={{ background: `linear-gradient(135deg, rgba(124,92,252,0.3), rgba(91,78,217,0.3))` }}>{item.icon}</div>
+                        style={{ background: 'var(--accent-muted)', border: '1px solid var(--accent-border)' }}>{item.icon}</div>
                       <div>
                         <span className={`inline-block rounded-full px-2.5 py-0.5 text-[10px] font-bold text-white bg-gradient-to-r ${item.tagGradient}`}>{item.tag}</span>
                         <h2 className="mt-1.5 text-sm font-bold text-slate-100 group-hover:text-white transition-colors">{item.title}</h2>
@@ -94,7 +108,7 @@ export const AnnouncementsPage = () => (
           <div className="card-dark p-5">
             <h3 className="text-[10px] font-bold uppercase tracking-widest mb-3" style={{ color: 'var(--text3)' }}>Durum</h3>
             <div className="flex items-center gap-2">
-              <span className="h-2 w-2 rounded-full bg-emerald-400" style={{ boxShadow: '0 0 8px rgba(52,211,153,0.8)' }} />
+              <span className="status-dot-online h-2 w-2" style={{ boxShadow: '0 0 8px var(--success-glow)' }} />
               <span className="text-xs" style={{ color: 'var(--text2)' }}>Tüm sistemler çalışıyor</span>
             </div>
             <div className="mt-3 space-y-2">
