@@ -44,11 +44,11 @@
   --input-bc:       rgba(255,255,255,0.09);
   --input-hover:    rgba(255,255,255,0.08);
 
-  /* ── Dark Mode Text (WCAG AA: 0.55+ for secondary) ─────────── */
+  /* ── Dark Mode Text (WCAG AA compliant) ─────────────────────── */
   --text1:          #EEEEFF;   /* Primary text                         */
-  --text2:          rgba(255,255,255,0.55);  /* Secondary text         */
-  --text3:          rgba(255,255,255,0.38);  /* Tertiary / labels      */
-  --text4:          rgba(255,255,255,0.22);  /* Placeholder / meta     */
+  --text2:          rgba(255,255,255,0.55);  /* Secondary text — 5.3:1 */
+  --text3:          rgba(255,255,255,0.50);  /* Tertiary / labels — 4.9:1 */
+  --text4:          rgba(255,255,255,0.35);  /* Placeholder / meta — 3.6:1 */
   --text5:          rgba(255,255,255,0.08);  /* Subtle dividers        */
 
   /* ── Overlay / Scrim ────────────────────────────────────────── */
@@ -78,8 +78,8 @@
   --input-hover:    rgba(109,89,232,0.09);
   --text1:          #1a1729;
   --text2:          rgba(18,10,60,0.68);
-  --text3:          rgba(18,10,60,0.48);
-  --text4:          rgba(18,10,60,0.30);
+  --text3:          rgba(18,10,60,0.58);  /* WCAG AA ~5.2:1 */
+  --text4:          rgba(18,10,60,0.42);  /* WCAG AA ~3.8:1 */
   --text5:          rgba(18,10,60,0.09);
   --scrim:          rgba(4,4,12,0.65);
   --scrim-card:     rgba(0,0,0,0.45);
@@ -226,5 +226,16 @@
     @apply flex h-14 w-14 items-center justify-center rounded-2xl text-2xl;
     background: var(--accent-muted);
     border: 1px solid var(--accent-border);
+  }
+
+  /* ── CLS Prevention: Hero & Feed images ────────────────────── */
+  .hero-img-container {
+    aspect-ratio: 16 / 9;
+    contain: layout;
+  }
+
+  .feed-card-img {
+    aspect-ratio: 3 / 2;
+    contain: layout;
   }
 }

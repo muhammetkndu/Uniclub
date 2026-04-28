@@ -1,19 +1,25 @@
-import { useState } from 'react'
+import { useState, lazy, Suspense } from 'react'
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom'
 import { HelmetProvider } from 'react-helmet-async'
 import { ThemeProvider } from './context/ThemeContext'
 import { ToastProvider } from './context/ToastContext'
 import { Navbar } from './components/Navbar'
-import { HomePage } from './pages/HomePage'
-import { ClubsPage } from './pages/ClubsPage'
-import { AnnouncementsPage } from './pages/AnnouncementsPage'
-import { LoginModal } from './components/LoginModal'
-import { SignupModal } from './components/SignupModal'
-import { CreateClubModal } from './components/CreateClubModal'
-import { CreatePostModal } from './components/CreatePostModal'
 import { Footer } from './components/Footer'
-import { BlogPage } from './pages/BlogPage'
-import { BlogDetailPage } from './pages/BlogDetailPage'
+
+// Eager: ana sayfa (LCP)
+import { HomePage } from './pages/HomePage'
+
+// Lazy: diğer sayfalar — ayrı chunk'lara bölünür
+const ClubsPage = lazy(() => import('./pages/ClubsPage').then(m => ({ default: m.ClubsPage })))
+const AnnouncementsPage = lazy(() => import('./pages/AnnouncementsPage').then(m => ({ default: m.AnnouncementsPage })))
+const BlogPage = lazy(() => import('./pages/BlogPage').then(m => ({ default: m.BlogPage })))
+const BlogDetailPage = lazy(() => import('./pages/BlogDetailPage').then(m => ({ default: m.BlogDetailPage })))
+
+// Lazy: modal'lar — kullanıcı etkileşimine kadar yüklenmez
+const LoginModal = lazy(() => import('./components/LoginModal').then(m => ({ default: m.LoginModal })))
+const SignupModal = lazy(() => import('./components/SignupModal').then(m => ({ default: m.SignupModal })))
+const CreateClubModal = lazy(() => import('./components/CreateClubModal').then(m => ({ default: m.CreateClubModal })))
+const CreatePostModal = lazy(() => import('./components/CreatePostModal').then(m => ({ default: m.CreatePostModal })))
 
 type ModalType = 'login' | 'signup' | 'createClub' | 'createPost' | null
 
@@ -28,21 +34,24 @@ const AppInner = () => {
         onCreateClubClick={() => setModal('createClub')}
       />
       <main className="flex-1">
-        <Routes>
-          <Route path="/" element={<HomePage onCreateClubClick={() => setModal('createClub')} onCreatePostClick={() => setModal('createPost')} />} />
-          <Route path="/clubs" element={<ClubsPage onCreateClubClick={() => setModal('createClub')} />} />
-          <Route path="/announcements" element={<AnnouncementsPage />} />
-          <Route path="/blog" element={<BlogPage />} />
-          <Route path="/blog/:id" element={<BlogDetailPage />} />
-          <Route path="*" element={<Navigate to="/" replace />} />
-        </Routes>
+        <Suspense fallback={<div style={{ minHeight: '60vh' }} />}>
+          <Routes>
+            <Route path="/" element={<HomePage onCreateClubClick={() => setModal('createClub')} onCreatePostClick={() => setModal('createPost')} />} />
+            <Route path="/clubs" element={<ClubsPage onCreateClubClick={() => setModal('createClub')} />} />
+            <Route path="/announcements" element={<AnnouncementsPage />} />
+            <Route path="/blog" element={<BlogPage />} />
+            <Route path="/blog/:id" element={<BlogDetailPage />} />
+            <Route path="*" element={<Navigate to="/" replace />} />
+          </Routes>
+        </Suspense>
       </main>
       <Footer />
-      <LoginModal isOpen={modal === 'login'} onClose={() => setModal(null)} />
-      <SignupModal isOpen={modal === 'signup'} onClose={() => setModal(null)} />
-      <CreateClubModal isOpen={modal === 'createClub'} onClose={() => setModal(null)} />
-      <CreatePostModal isOpen={modal === 'createPost'} onClose={() => setModal(null)} />
-      {/* CreateAnnouncementModal: ModalType'a 'createAnnouncement' eklenince buraya bağlanır */}
+      <Suspense fallback={null}>
+        {modal === 'login' && <LoginModal isOpen onClose={() => setModal(null)} />}
+        {modal === 'signup' && <SignupModal isOpen onClose={() => setModal(null)} />}
+        {modal === 'createClub' && <CreateClubModal isOpen onClose={() => setModal(null)} />}
+        {modal === 'createPost' && <CreatePostModal isOpen onClose={() => setModal(null)} />}
+      </Suspense>
     </div>
   )
 }

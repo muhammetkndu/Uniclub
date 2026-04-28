@@ -21,11 +21,11 @@ const CLUB_GRADIENTS: Record<string, string> = {
 }
 
 const INITIAL_POSTS: Post[] = [
-  { id: 1, type: 'events', club: 'Developer Student Community', clubInitials: 'DS', clubGradient: 'from-violet-500 to-purple-600', timeAgo: '12 dk', title: 'React Hooks Atölyesine Giriş', description: 'Hooks ve modern araçlarla ilk React uygulamanı oluşturacağın uygulamalı bir oturum.', imageUrl: 'https://images.pexels.com/photos/1181675/pexels-photo-1181675.jpeg?auto=compress&cs=tinysrgb&w=700', tag: 'Atölye', tagGradient: 'from-violet-500 to-purple-600', likes: 24, comments: 6 },
-  { id: 2, type: 'announcements', club: 'ESports Society', clubInitials: 'ES', clubGradient: 'from-indigo-500 to-blue-600', timeAgo: '1 sa', title: 'Valorant Kampüs Ligi Elemeleri', description: "Cuma 23:59'da kayıtlar kapanıyor. 5v5, ödül havuzu 2000₺.", imageUrl: 'https://images.pexels.com/photos/907230/pexels-photo-907230.jpeg?auto=compress&cs=tinysrgb&w=700', tag: 'Turnuva', tagGradient: 'from-indigo-500 to-blue-600', likes: 41, comments: 12 },
-  { id: 3, type: 'events', club: 'Müzik & Sahne Sanatları', clubInitials: 'MÜ', clubGradient: 'from-pink-500 to-rose-600', timeAgo: '3 sa', title: 'Açık Mikrofon Gecesi Kayıtları', description: 'Bahar şovumuz için şarkıcı, şair ve stand-up sanatçısı arıyoruz.', imageUrl: 'https://images.pexels.com/photos/164745/pexels-photo-164745.jpeg?auto=compress&cs=tinysrgb&w=700', tag: 'Etkinlik', tagGradient: 'from-pink-500 to-rose-600', likes: 18, comments: 3 },
+  { id: 1, type: 'events', club: 'Developer Student Community', clubInitials: 'DS', clubGradient: 'from-violet-500 to-purple-600', timeAgo: '12 dk', title: 'React Hooks Atölyesine Giriş', description: 'Hooks ve modern araçlarla ilk React uygulamanı oluşturacağın uygulamalı bir oturum.', imageUrl: 'https://images.pexels.com/photos/1181675/pexels-photo-1181675.jpeg?auto=compress&cs=tinysrgb&w=600&fm=webp', tag: 'Atölye', tagGradient: 'from-violet-500 to-purple-600', likes: 24, comments: 6 },
+  { id: 2, type: 'announcements', club: 'ESports Society', clubInitials: 'ES', clubGradient: 'from-indigo-500 to-blue-600', timeAgo: '1 sa', title: 'Valorant Kampüs Ligi Elemeleri', description: "Cuma 23:59'da kayıtlar kapanıyor. 5v5, ödül havuzu 2000₺.", imageUrl: 'https://images.pexels.com/photos/907230/pexels-photo-907230.jpeg?auto=compress&cs=tinysrgb&w=600&fm=webp', tag: 'Turnuva', tagGradient: 'from-indigo-500 to-blue-600', likes: 41, comments: 12 },
+  { id: 3, type: 'events', club: 'Müzik & Sahne Sanatları', clubInitials: 'MÜ', clubGradient: 'from-pink-500 to-rose-600', timeAgo: '3 sa', title: 'Açık Mikrofon Gecesi Kayıtları', description: 'Bahar şovumuz için şarkıcı, şair ve stand-up sanatçısı arıyoruz.', imageUrl: 'https://images.pexels.com/photos/164745/pexels-photo-164745.jpeg?auto=compress&cs=tinysrgb&w=600&fm=webp', tag: 'Etkinlik', tagGradient: 'from-pink-500 to-rose-600', likes: 18, comments: 3 },
   { id: 4, type: 'announcements', club: 'Girişimcilik Kulübü', clubInitials: 'GK', clubGradient: 'from-amber-500 to-orange-500', timeAgo: 'Dün', title: 'Pitch Yarışması Mentörleri Açıklandı', description: 'Mentör listesini incele ve 1:1 geri bildirim slotunu rezerve et.', tag: 'Duyuru', tagGradient: 'from-amber-500 to-orange-500', likes: 33, comments: 8 },
-  { id: 5, type: 'events', club: 'Fotoğrafçılık Topluluğu', clubInitials: 'FT', clubGradient: 'from-teal-500 to-emerald-500', timeAgo: '2 gün', title: 'Altın Saat Yürüyüşü', description: 'Her Pazar kampüsün en güzel köşelerini fotoğraflıyoruz.', imageUrl: 'https://images.pexels.com/photos/1363876/pexels-photo-1363876.jpeg?auto=compress&cs=tinysrgb&w=700', tag: 'Etkinlik', tagGradient: 'from-teal-500 to-emerald-500', likes: 27, comments: 5 },
+  { id: 5, type: 'events', club: 'Fotoğrafçılık Topluluğu', clubInitials: 'FT', clubGradient: 'from-teal-500 to-emerald-500', timeAgo: '2 gün', title: 'Altın Saat Yürüyüşü', description: 'Her Pazar kampüsün en güzel köşelerini fotoğraflıyoruz.', imageUrl: 'https://images.pexels.com/photos/1363876/pexels-photo-1363876.jpeg?auto=compress&cs=tinysrgb&w=600&fm=webp', tag: 'Etkinlik', tagGradient: 'from-teal-500 to-emerald-500', likes: 27, comments: 5 },
   { id: 6, type: 'announcements', club: 'Bilim & Araştırma Kulübü', clubInitials: 'BA', clubGradient: 'from-sky-500 to-cyan-500', timeAgo: '3 gün', title: 'TÜBİTAK Proje Başvuruları', description: 'Bu yıl 5 projemizi TÜBİTAK destekli yarışmaya sunuyoruz.', tag: 'Duyuru', tagGradient: 'from-sky-500 to-cyan-500', likes: 15, comments: 9 },
 ]
 
@@ -40,9 +40,9 @@ function PostCard({ post, liked, saved, onLike, onSave }: { post: Post; liked: b
   return (
     <article className="card-dark group flex flex-col overflow-hidden cursor-pointer">
       {/* ── Image (tall) ── */}
-      <div className="relative shrink-0 overflow-hidden" style={{ height: 290 }}>
+      <div className="relative shrink-0 overflow-hidden feed-card-img">
         {post.imageUrl ? (
-          <img src={post.imageUrl} alt={post.title} className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105" loading="lazy" />
+          <img src={post.imageUrl} alt={post.title} width={600} height={400} className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105" loading="lazy" />
         ) : (
           <div className={`h-full w-full bg-gradient-to-br ${post.clubGradient} relative overflow-hidden`}>
             <div className="absolute -top-8 -right-8 h-36 w-36 rounded-full bg-white/10" />
@@ -168,12 +168,10 @@ export const FeedSection = ({ onCreatePostClick }: { onCreatePostClick?: () => v
             <button type="button" onClick={openCreate} className="btn-primary mt-4 text-xs px-5 py-2.5" aria-label="İlk gönderiyi oluştur">İlk gönderiyi oluştur</button>
           </div>
         ) : (
-          <div className="hide-scrollbar overflow-y-auto" style={{ maxHeight: '880px' }}>
-            <div className="grid gap-4 grid-cols-1 sm:grid-cols-2">
-              {filtered.map(post => (
-                <PostCard key={post.id} post={post} liked={liked.has(post.id)} saved={saved.has(post.id)} onLike={() => toggleLike(post.id)} onSave={() => toggleSave(post.id)} />
-              ))}
-            </div>
+          <div className="grid gap-4 grid-cols-1 sm:grid-cols-2">
+            {filtered.map(post => (
+              <PostCard key={post.id} post={post} liked={liked.has(post.id)} saved={saved.has(post.id)} onLike={() => toggleLike(post.id)} onSave={() => toggleSave(post.id)} />
+            ))}
           </div>
         )}
       </div>

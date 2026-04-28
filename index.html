@@ -1,13 +1,27 @@
 <!doctype html>
 <html lang="tr">
   <head>
-    <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-E3GQ757E2M"></script>
+    <!-- Google tag (gtag.js) — delay until first interaction for mobile perf -->
     <script>
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      gtag('config', 'G-E3GQ757E2M');
+      function __loadGTM() {
+        if (window.__gtmLoaded) return;
+        window.__gtmLoaded = true;
+        var s = document.createElement('script');
+        s.src = 'https://www.googletagmanager.com/gtag/js?id=G-E3GQ757E2M';
+        s.async = true;
+        document.head.appendChild(s);
+        gtag('js', new Date());
+        gtag('config', 'G-E3GQ757E2M');
+        ['scroll','click','touchstart','keydown'].forEach(function(e) {
+          document.removeEventListener(e, __loadGTM, {capture:true});
+        });
+      }
+      ['scroll','click','touchstart','keydown'].forEach(function(e) {
+        document.addEventListener(e, __loadGTM, {capture:true, passive:true, once:true});
+      });
+      setTimeout(__loadGTM, 5000);
     </script>
 
     <meta charset="UTF-8" />
@@ -62,11 +76,20 @@
     <link rel="preconnect" href="https://images.pexels.com" />
     <link rel="preconnect" href="https://www.googletagmanager.com" />
 
-    <!-- Google Fonts: Inter -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+    <!-- Google Fonts: Inter (async — mobil render-blocking fix) -->
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" media="print" onload="this.media='all'" />
+    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" /></noscript>
 
-    <!-- Preload: ilk hero görseli (LCP optimizasyonu) -->
-    <link rel="preload" as="image" href="https://images.pexels.com/photos/1205651/pexels-photo-1205651.jpeg?auto=compress&cs=tinysrgb&w=1200" fetchpriority="high" />
+    <!-- Preload: ilk hero görseli — responsive + WebP (LCP optimizasyonu) -->
+    <link rel="preload" as="image"
+      href="https://images.pexels.com/photos/1205651/pexels-photo-1205651.jpeg?auto=compress&cs=tinysrgb&w=600&fm=webp"
+      imagesrcset="
+        https://images.pexels.com/photos/1205651/pexels-photo-1205651.jpeg?auto=compress&cs=tinysrgb&w=600&fm=webp 600w,
+        https://images.pexels.com/photos/1205651/pexels-photo-1205651.jpeg?auto=compress&cs=tinysrgb&w=1024&fm=webp 1024w,
+        https://images.pexels.com/photos/1205651/pexels-photo-1205651.jpeg?auto=compress&cs=tinysrgb&w=1340&fm=webp 1340w"
+      imagesizes="100vw"
+      fetchpriority="high" />
 
     <!-- JSON-LD Schema: WebSite -->
     <script type="application/ld+json">

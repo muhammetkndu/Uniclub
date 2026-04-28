@@ -24,13 +24,19 @@ const TRENDING_CLUBS = [
   { name: 'Bilim & Araştırma Kulübü', category: 'Bilim', members: 58, gradient: 'from-sky-500 to-cyan-500', initials: 'BA', hot: false },
 ]
 
-// Background images for hero slideshow
-const HERO_IMAGES = [
-  'https://images.pexels.com/photos/1205651/pexels-photo-1205651.jpeg?auto=compress&cs=tinysrgb&w=1920', // LCP — yüksek çözünürlük
-  'https://images.pexels.com/photos/3184311/pexels-photo-3184311.jpeg?auto=compress&cs=tinysrgb&w=900',
-  'https://images.pexels.com/photos/1181304/pexels-photo-1181304.jpeg?auto=compress&cs=tinysrgb&w=900',
-  'https://images.pexels.com/photos/164745/pexels-photo-164745.jpeg?auto=compress&cs=tinysrgb&w=900',
-]
+// Background images for hero slideshow — responsive + WebP
+const HERO_PHOTO_IDS = ['1205651', '3184311', '1181304', '164745']
+
+/** Pexels URL'i oluştur (WebP destekli) */
+const pexelUrl = (id: string, w: number) =>
+  `https://images.pexels.com/photos/${id}/pexels-photo-${id}.jpeg?auto=compress&cs=tinysrgb&w=${w}&fm=webp`
+
+/** Responsive srcSet: mobil 600w, tablet 1024w, masaüstü 1340w */
+const heroSrcSet = (id: string) =>
+  `${pexelUrl(id, 600)} 600w, ${pexelUrl(id, 1024)} 1024w, ${pexelUrl(id, 1340)} 1340w`
+
+/** Fallback src (masaüstü viewport'a optimize) */
+const HERO_IMAGES = HERO_PHOTO_IDS.map(id => pexelUrl(id, 1340))
 
 // ── Hero ─────────────────────────────────────────────────────────────
 function Hero({ onCreateClubClick }: { onCreateClubClick: () => void }) {
@@ -70,18 +76,20 @@ function Hero({ onCreateClubClick }: { onCreateClubClick: () => void }) {
 </Helmet>
     <section className="relative flex min-h-[92vh] items-center justify-center overflow-hidden px-4">
 
-      {/* ── Background images (auto-advancing) ── */}
+      {/* ── Background images (auto-advancing, responsive + WebP) ── */}
       {HERO_IMAGES.map((img, i) => (
         <div key={img}
-          className="absolute inset-0 z-0 transition-opacity duration-1000"
+          className="absolute inset-0 z-0 transition-opacity duration-1000 hero-img-container"
           style={{ opacity: i === bgIdx ? 1 : 0 }}>
           <img
             src={img}
+            srcSet={heroSrcSet(HERO_PHOTO_IDS[i])}
+            sizes="100vw"
             alt=""
             className="h-full w-full object-cover transition-transform duration-700"
             draggable={false}
-            width="1920"
-            height="1080"
+            width="1340"
+            height="754"
             loading={i === 0 ? 'eager' : 'lazy'}
             fetchPriority={i === 0 ? 'high' : 'low'}
             decoding={i === 0 ? 'sync' : 'async'}
@@ -109,12 +117,10 @@ function Hero({ onCreateClubClick }: { onCreateClubClick: () => void }) {
       {/* ── Main content ── */}
       <div className="relative z-30 mx-auto max-w-5xl text-center">
         {/* Badge */}
-        <div className="mb-8 flex items-center justify-center">
-          <span className="badge-accent">
-            <span className="status-dot-online animate-pulse" />
-            Türkiye'nin Kampüs Platformu
-          </span>
-        </div>
+        <span className="badge-accent mb-8">
+          <span className="status-dot-online animate-pulse" />
+          Türkiye'nin Kampüs Platformu
+        </span>
 
         {/* Headline — always on dark bg, so text-white is safe */}
         <h1 className="text-5xl font-black leading-[1.05] tracking-tight text-white md:text-6xl lg:text-7xl">
@@ -165,9 +171,12 @@ function Hero({ onCreateClubClick }: { onCreateClubClick: () => void }) {
       </div>
 
       {/* Image dots indicator */}
-      <div className="absolute bottom-8 right-8 z-30 flex items-center gap-1.5">
+      <div className="absolute bottom-8 right-8 z-30 flex items-center gap-1.5" role="tablist" aria-label="Hero görselleri">
         {HERO_IMAGES.map((_, i) => (
           <button key={i} type="button" onClick={() => setBgIdx(i)}
+            role="tab"
+            aria-selected={i === bgIdx}
+            aria-label={`Görsel ${i + 1}'e git`}
             className="transition-all duration-300 rounded-full bg-white"
             style={{ width: i === bgIdx ? 20 : 6, height: 6, opacity: i === bgIdx ? 1 : 0.35 }} />
         ))}
@@ -189,14 +198,13 @@ function StatsBar() {
         <div className="grid grid-cols-2 gap-6 sm:grid-cols-4">
           {STATS.map(s => (
             <div key={s.label} className="flex items-center gap-3">
-              <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl text-lg"
+              <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl text-lg"
                 style={{ background: 'var(--accent-muted)', border: '1px solid var(--accent-border)' }}>
                 {s.icon}
-              </div>
-              <div>
-                <p className="text-base font-extrabold" style={{ color: 'var(--accent-text)' }}>{s.value}</p>
-                <p className="text-xs" style={{ color: 'var(--text3)' }}>{s.label}</p>
-              </div>
+              </span>
+              <p className="text-base font-extrabold" style={{ color: 'var(--accent-text)' }}>{s.value}
+                <span className="block text-xs font-normal" style={{ color: 'var(--text3)' }}>{s.label}</span>
+              </p>
             </div>
           ))}
         </div>
@@ -211,10 +219,9 @@ function TrendingClubs() {
     <section className="py-14" style={{ background: 'var(--bg)' }}>
       <div className="mx-auto max-w-7xl px-4 lg:px-8">
         <div className="mb-6 flex items-center justify-between">
-          <div>
-            <h2 className="text-lg font-bold text-slate-100">Öne Çıkan Kulüpler</h2>
-            <p className="mt-0.5 text-xs" style={{ color: 'var(--text3)' }}>Bu hafta en aktif topluluklar</p>
-          </div>
+          <h2 className="text-lg font-bold text-slate-100">Öne Çıkan Kulüpler
+            <span className="block mt-0.5 text-xs font-normal" style={{ color: 'var(--text3)' }}>Bu hafta en aktif topluluklar</span>
+          </h2>
           <Link to="/clubs" className="text-xs font-medium transition-colors hover:text-[var(--accent-light)]" style={{ color: 'var(--accent-text)' }}>Tümünü gör →</Link>
         </div>
         <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
